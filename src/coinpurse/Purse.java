@@ -20,7 +20,7 @@ public class Purse {
      */
     //TODO declare a List of Coins named "money".
 
-    private List<Coin> money = new ArrayList<>();
+    private List<Coin> money;
 
     /**
      * Capacity is maximum number of items the purse can hold.
@@ -34,7 +34,7 @@ public class Purse {
      * @param capacity is maximum number of coins you can put in purse.
      */
     public Purse(int capacity) {
-
+        money = new ArrayList<>();
         this.capacity = capacity;
     }
 
@@ -97,11 +97,15 @@ public class Purse {
      */
     public boolean insert(Coin coin) {
         // if the purse is already full then can't insert anything.
-        if (isFull()) {
+        if (coin.getValue() == 0) {
             return false;
+        } else {
+            if (isFull()) {
+                return false;
+            }
+            money.add(coin);
+            return true;
         }
-        money.add(coin);
-        return true;
     }
 
     /**
@@ -117,43 +121,34 @@ public class Purse {
 
         double amountNeededToWithdraw = amount;
         //TODO don't allow to withdraw amount < 0
-
         List<Coin> templist = new ArrayList<>();
-
         Collections.sort(money);
-        Collections.reverse(money);
-
-//        for (int a = 0; a <= money.size(); a++) {
-//            templist.add(money.get(a).getValue());
-//        }
-
 
         // failed. Don't change the contents of the purse.
 
-
-        if (amountNeededToWithdraw <= 0 || amountNeededToWithdraw > getBalance()) {
+        if (amount < 0 || amount > getBalance()) {
             System.out.println("Can't withdraw the money");
             return null;
-        }
-
-        for (Coin a : money) {
-            if (amountNeededToWithdraw != 0) {
-                if (amountNeededToWithdraw - a.getValue() > -1) {
-                    amountNeededToWithdraw = amountNeededToWithdraw - a.getValue();
-                    templist.add(a);
-                    money.remove(a);
+        } else {
+            for (int i = money.size()-1 ; i >= 0; i--) {
+                if (amountNeededToWithdraw > 0) {
+                    if (amountNeededToWithdraw - money.get(i).getValue() >= 0) {
+                        amountNeededToWithdraw -= money.get(i).getValue();
+                        templist.add(money.get(i));
+                        money.remove(money.get(i));
+                    }
+                } else {
+                    break;
                 }
-//
-                } else break;
+            }
+
+            if (amountNeededToWithdraw > 0) {
+                money.addAll(templist);
+                return null;
+            }
         }
 
-
-        if (amountNeededToWithdraw > 0){
-            money.addAll(templist);
-            return null;
-        }
-
-        Coin [] array = new Coin[templist.size()];
+        Coin[] array = new Coin[templist.size()];
         return templist.toArray(array);
 
 
@@ -173,24 +168,23 @@ public class Purse {
 		* list (as an array).
 		*/
 
-            // Did we get the full amount?
-            // This code assumes you decrease amount each time you remove a coin.
-            // Your code might use some other variable for the remaining amount to withdraw.
+        // Did we get the full amount?
+        // This code assumes you decrease amount each time you remove a coin.
+        // Your code might use some other variable for the remaining amount to withdraw.
 
 
-            // Success.
-            // Remove the coins you want to withdraw from purse,
-            // and return them as an array.
-            // Use list.toArray( array[] ) to copy a list into an array.
-            // toArray returns a reference to the array itself.
-            //TODO replace this with real code
-        }
+        // Success.
+        // Remove the coins you want to withdraw from purse,
+        // and return them as an array.
+        // Use list.toArray( array[] ) to copy a list into an array.
+        // toArray returns a reference to the array itself.
+    }
 
 
-        /**
-         * toString returns a string description of the purse contents.
-         * It can return whatever is a useful description.
-         */
+    /**
+     * toString returns a string description of the purse contents.
+     * It can return whatever is a useful description.
+     */
 
     public String toString() {
         return "Money in the purse: " + getBalance();

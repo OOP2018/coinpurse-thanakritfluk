@@ -120,7 +120,6 @@ public class PurseTest {
 	public void testEasyWithdraw() {
 		Purse purse = new Purse(10);
 		double [] values = {1, 20, 0.5, 10}; // values of coins we will insert
-
 		for(double value : values) {
 			Coin coin = makeCoin(value);
 			assertTrue(purse.insert(coin));
