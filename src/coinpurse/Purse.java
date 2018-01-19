@@ -8,7 +8,7 @@ package coinpurse;
  *  You can insert coins, withdraw money, check the balance,
  *  and check if the purse is full.
  *  
- *  @author your name
+ *  @author Thanakrit Daorueang
  */
 public class Purse {
     /** Collection of objects in the purse. */
