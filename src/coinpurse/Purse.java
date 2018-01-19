@@ -1,8 +1,5 @@
 package coinpurse;
 
-//TODO import List, ArrayList, and Collections
-// You will use Collections.sort() to sort the coins
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
@@ -18,8 +15,6 @@ public class Purse {
     /**
      * Collection of objects in the purse.
      */
-    //TODO declare a List of Coins named "money".
-
     private List<Coin> money;
 
     /**
@@ -67,7 +62,6 @@ public class Purse {
      *
      * @return the capacity
      */
-    //TODO write accessor method for capacity. Use Java naming convention.
     public int getCapacity() {
         return capacity;
     }
@@ -80,7 +74,6 @@ public class Purse {
      * @return true if purse is full.
      */
     public boolean isFull() {
-        //TODO complete this method. Avoid writing duplicate code (Don't Repeat Yourself).
         if (count() < this.capacity) {
             return false;
         }
@@ -120,17 +113,14 @@ public class Purse {
     public Coin[] withdraw(double amount) {
 
         double amountNeededToWithdraw = amount;
-        //TODO don't allow to withdraw amount < 0
         List<Coin> templist = new ArrayList<>();
         Collections.sort(money);
-
-        // failed. Don't change the contents of the purse.
 
         if (amount < 0 || amount > getBalance()) {
             System.out.println("Can't withdraw the money");
             return null;
         } else {
-            for (int i = money.size()-1 ; i >= 0; i--) {
+            for (int i = money.size() - 1; i >= 0; i--) {
                 if (amountNeededToWithdraw > 0) {
                     if (amountNeededToWithdraw - money.get(i).getValue() >= 0) {
                         amountNeededToWithdraw -= money.get(i).getValue();
@@ -147,37 +137,8 @@ public class Purse {
                 return null;
             }
         }
-
         Coin[] array = new Coin[templist.size()];
         return templist.toArray(array);
-
-
-        /*
-        * See lab sheet for outline of a solution,
-		* or devise your own solution.
-		* The idea is to be greedy.
-		* Try to withdraw the largest coins possible.
-		* Each time you choose a coin as a candidate for
-		* withdraw, add it to a temporary list and
-		* decrease the amount (remainder) to withdraw.
-		*
-		* If you reach a point where amountNeededToWithdraw == 0
-		* then you found a solution!
-		* Now, use the temporary list to remove coins
-		* from the money list, and return the temporary
-		* list (as an array).
-		*/
-
-        // Did we get the full amount?
-        // This code assumes you decrease amount each time you remove a coin.
-        // Your code might use some other variable for the remaining amount to withdraw.
-
-
-        // Success.
-        // Remove the coins you want to withdraw from purse,
-        // and return them as an array.
-        // Use list.toArray( array[] ) to copy a list into an array.
-        // toArray returns a reference to the array itself.
     }
 
 
@@ -187,8 +148,8 @@ public class Purse {
      */
 
     public String toString() {
-        return "Money in the purse: " + getBalance();
+        return String.format("Money in the purse: %.2f", getBalance());
+
     }
 
 }
-//TODO When you finish, there should not be any TODO comments, including this one!

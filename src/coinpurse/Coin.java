@@ -2,6 +2,7 @@ package coinpurse;
 
 /**
  * Coin represents coinage (money) with a fixed value and currency.
+ *
  * @author Thanakrit Daorueang
  */
 
@@ -11,8 +12,7 @@ public class Coin implements Comparable<Coin> {
     private String currency;
 
     /**
-     *
-     * @param value is the value of money.
+     * @param value    is the value of money.
      * @param currency is the currency value of money.
      */
 
@@ -41,6 +41,7 @@ public class Coin implements Comparable<Coin> {
 
     /**
      * This medthod is use to use to compare between 2 coin value.
+     *
      * @param coin is the obj to compare.
      * @return number of result that compare value.
      */
@@ -52,11 +53,10 @@ public class Coin implements Comparable<Coin> {
 //        else if (this.getValue()-coin.getValue()<0)
         else return -1;
 
-
     }
 
     @Override
     public String toString() {
-        return value+"-"+currency;
+        return value + "-" + currency;
     }
 }
