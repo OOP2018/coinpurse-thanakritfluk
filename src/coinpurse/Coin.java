@@ -12,6 +12,7 @@ public class Coin implements Comparable<Coin> {
     private String currency;
 
     /**
+     *
      * @param value    is the value of money.
      * @param currency is the currency value of money.
      */
@@ -21,15 +22,30 @@ public class Coin implements Comparable<Coin> {
         this.currency = currency;
     }
 
+    /**
+     * This can get value of coin.
+     * @return the value of coin
+     */
     public double getValue() {
         return value;
     }
 
+
+    /**
+     * This can get currency of coin.
+     * @return the currency of coin
+     */
     public String getCurrency() {
         return currency;
     }
 
 
+    /**
+     * Comparing two objects if they are the same returning
+     * a boolean type data.
+     * @param arg
+     * @return true of false
+     */
     @Override
     public boolean equals(Object arg) {
         if (arg == null) return false;
@@ -50,11 +66,14 @@ public class Coin implements Comparable<Coin> {
             return 0;
         else if (this.getValue() - coin.getValue() > 0)
             return 1;
-//        else if (this.getValue()-coin.getValue()<0)
         else return -1;
 
     }
 
+    /**
+     * This method use to return the string in form of value and currency.
+     * @return String include value and currency.
+     */
     @Override
     public String toString() {
         return value + "-" + currency;
