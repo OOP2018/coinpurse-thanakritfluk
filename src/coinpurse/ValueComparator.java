@@ -15,10 +15,10 @@ public class ValueComparator implements Comparator<Valuable> {
      * If both objects have the same currency, order them by value.
      */
     public int compare(Valuable a, Valuable b) {
-        String baht = "Baht";
-        String dollar = "Dollar";
-        if (a.getCurrency().equals(b.getCurrency())) return 0;
-        if (a.getCurrency().equals(dollar) && b.getCurrency().equals(baht)) return 1;
-        return -1;
+        if (a.getValue() - b.getValue() == 0)
+            return 0;
+        else if (a.getValue() - b.getValue() > 0)
+            return 1;
+        else return -1;
     }
 }

@@ -113,24 +113,26 @@ public class Purse {
     public Valuable[] withdraw(double amount) {
 
         double amountNeededToWithdraw = amount;
-        if (amount < 0 || amount > getBalance()) {
-            return null;
-        }
 
-        Comparator<Valuable> comp = new ValueComparator();
 
         List<Valuable> templist = new ArrayList<>();
+        Comparator<Valuable> comp = new ValueComparator();
         money.sort(comp);
 
-        for (int i = money.size() - 1; i >= 0; i--) {
-            if (amountNeededToWithdraw >= 0) {
-                if (amountNeededToWithdraw - money.get(i).getValue() >= 0) {
-                    amountNeededToWithdraw -= money.get(i).getValue();
-                    templist.add(money.get(i));
-                    money.remove(money.get(i));
+        if (amount < 0 || amount > getBalance()) {
+            return null;
+        } else {
+            for (int i = money.size() - 1; i >= 0; i--) {
+                if (amountNeededToWithdraw > 0) {
+                    if (amountNeededToWithdraw - money.get(i).getValue() >= 0) {
+                        amountNeededToWithdraw -= money.get(i).getValue();
+                        templist.add(money.get(i));
+                        money.remove(money.get(i));
+                    }
+                } else {
+                    break;
                 }
-            } else break;
-
+            }
         }
 
         if (amountNeededToWithdraw > 0) {
