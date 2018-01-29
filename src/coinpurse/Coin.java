@@ -6,13 +6,12 @@ package coinpurse;
  * @author Thanakrit Daorueang
  */
 
-public class Coin implements Comparable<Coin> {
+public class Coin implements Valuable {
 
     private double value;
     private String currency;
 
     /**
-     *
      * @param value    is the value of money.
      * @param currency is the currency value of money.
      */
@@ -24,6 +23,7 @@ public class Coin implements Comparable<Coin> {
 
     /**
      * This can get value of coin.
+     *
      * @return the value of coin
      */
     public double getValue() {
@@ -33,6 +33,7 @@ public class Coin implements Comparable<Coin> {
 
     /**
      * This can get currency of coin.
+     *
      * @return the currency of coin
      */
     public String getCurrency() {
@@ -43,6 +44,7 @@ public class Coin implements Comparable<Coin> {
     /**
      * Comparing two objects if they are the same returning
      * a boolean type data.
+     *
      * @param arg
      * @return true of false
      */
@@ -72,6 +74,7 @@ public class Coin implements Comparable<Coin> {
 
     /**
      * This method use to return the string in form of value and currency.
+     *
      * @return String include value and currency.
      */
     @Override
