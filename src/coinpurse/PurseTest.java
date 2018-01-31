@@ -35,8 +35,9 @@ public class PurseTest {
     }
 
     /** Make a coin with the default currency. To save typing "new Coin(...)" */
-    private Coin makeCoin(double value) {
-        return new Coin(value,CURRENCY);
+    private Valuable makeCoin(double value) {
+        return new Coin(value, CURRENCY) {
+        };
     }
 
     /** Easy test that the Purse constructor is working. */
@@ -56,9 +57,9 @@ public class PurseTest {
     public void testInsert()
     {
         Purse purse = new Purse(3);
-        Coin coin1 = makeCoin(5);
-        Coin coin2 = makeCoin(10);
-        Coin coin3 = makeCoin(1);
+        Valuable coin1 = makeCoin(5);
+        Valuable coin2 = makeCoin(10);
+        Valuable coin3 = makeCoin(1);
         assertTrue( purse.insert(coin1));
         assertTrue( purse.insert(coin3));
         assertTrue( purse.insert(coin2));
@@ -73,7 +74,7 @@ public class PurseTest {
     public void testInsertNoValue()
     {
         Purse purse = new Purse(3);
-        Coin fakeCoin = new Coin(0, CURRENCY);
+        Valuable fakeCoin = new Coin(0, CURRENCY);
         assertFalse( purse.insert(fakeCoin) );
     }
 
@@ -106,12 +107,12 @@ public class PurseTest {
         int capacity = 5;
         double value = 10.0;
         Purse purse = new Purse(capacity);
-        Coin coin = new Coin(value, "THB");
-        assertTrue( purse.insert(coin) );
-        assertTrue( purse.insert(coin) ); // should be allowed
-        assertTrue( purse.insert(coin) ); // should be allowed
-        assertTrue( purse.insert(coin) ); // should be allowed
-        assertTrue( purse.insert(coin) ); // should be allowed
+        Valuable valuable = new Coin(value, "THB");
+        assertTrue( purse.insert(valuable) );
+        assertTrue( purse.insert(valuable) ); // should be allowed
+        assertTrue( purse.insert(valuable) ); // should be allowed
+        assertTrue( purse.insert(valuable) ); // should be allowed
+        assertTrue( purse.insert(valuable) ); // should be allowed
         assertEquals( purse.getBalance(), 5*value, TOL);
     }
 
@@ -122,13 +123,13 @@ public class PurseTest {
         double [] values = {1, 20, 0.5, 10}; // values of coins we will insert
 
         for(double value : values) {
-            Coin coin = makeCoin(value);
-            assertTrue(purse.insert(coin));
+            Valuable valuable = makeCoin(value);
+            assertTrue(purse.insert(valuable));
             assertEquals(value,  purse.getBalance(), TOL);
             Valuable [] result = purse.withdraw(value);
             assertTrue( result != null );
             assertEquals( 1, result.length );
-            assertSame(  coin, result[0] ); // should be same object
+            assertSame(  valuable, result[0] ); // should be same object
             assertEquals( 0, purse.getBalance(), TOL );
         }
     }
