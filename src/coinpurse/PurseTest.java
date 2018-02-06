@@ -58,7 +58,7 @@ public class PurseTest {
     {
         Purse purse = new Purse(3);
         Valuable coin1 = makeCoin(5);
-        Valuable coin2 = makeCoin(10);
+        Valuable coin2 = makeCoin(60);
         Valuable coin3 = makeCoin(1);
         assertTrue( purse.insert(coin1));
         assertTrue( purse.insert(coin3));

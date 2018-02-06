@@ -5,13 +5,17 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * A coin purse contains coins.
- * You can insert coins, withdraw money, check the balance,
+ * A coin purse contains valuable.
+ * You can insert valuable, withdraw money, check the balance,
  * and check if the purse is full.
  *
  * @author Thanakrit Daorueang
  */
 public class Purse {
+    /**
+     * Comparator of valuable.
+     */
+    private Comparator<Valuable> comp = new ValueComparator();
     /**
      * Collection of objects in the purse.
      */
@@ -26,7 +30,7 @@ public class Purse {
     /**
      * Create a purse with a specified capacity.
      *
-     * @param capacity is maximum number of coins you can put in purse.
+     * @param capacity is maximum number of valuable you can put in purse.
      */
     public Purse(int capacity) {
         money = new ArrayList<>();
@@ -34,10 +38,10 @@ public class Purse {
     }
 
     /**
-     * Count and return the number of coins in the purse.
-     * This is the number of coins, not their value.
+     * Count and return the number of valuable in the purse.
+     * This is the number of valuable, not their value.
      *
-     * @return the number of coins in the purse
+     * @return the number of valuable in the purse
      */
     public int count() {
         return money.size();
@@ -103,7 +107,7 @@ public class Purse {
 
     /**
      * Withdraw the requested amount of money.
-     * Return an array of Coins withdrawn from purse,
+     * Return an array of valuable withdrawn from purse,
      * or return null if cannot withdraw the amount requested.
      *
      * @param amount is the amount to withdraw
@@ -116,7 +120,7 @@ public class Purse {
 
 
         List<Valuable> templist = new ArrayList<>();
-        Comparator<Valuable> comp = new ValueComparator();
+
         money.sort(comp);
 
         if (amount < 0 || amount > getBalance()) {

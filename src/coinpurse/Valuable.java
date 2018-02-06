@@ -15,5 +15,9 @@ public interface Valuable {
 
     double getValue();
 
+    /**
+     * Get the currency of this object
+     * @return the currency of this object.
+     */
     String getCurrency();
 }

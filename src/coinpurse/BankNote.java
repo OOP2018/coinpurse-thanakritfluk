@@ -21,7 +21,7 @@ public class BankNote implements Valuable {
     /**
      * next serial number of next banknote.
      */
-    private static long nextSerialNumber = 999999;
+    private static long nextSerialNumber = 1000000;
 
     /**
      * This is the construtor of the class that set the value,currency and serial number.
@@ -32,7 +32,7 @@ public class BankNote implements Valuable {
     public BankNote(double value, String currency) {
         this.value = value;
         this.currency = currency;
-        this.serialNumber = nextSerialNumber + 1;
+        this.serialNumber = nextSerialNumber++;
 
     }
 
