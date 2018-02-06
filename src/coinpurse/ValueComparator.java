@@ -10,7 +10,7 @@ import java.util.Comparator;
 public class ValueComparator implements Comparator<Valuable> {
     /**
      * Compare two objects that implement Valuable.
-     * First compare them by the length of currency, so that "Baht" < "Dollar".
+     * First compare them by the alphabet of currency, so that "Baht" < "Dollar".
      * If both objects have the same currency, order them by value.
      */
     public int compare(Valuable a, Valuable b) {
