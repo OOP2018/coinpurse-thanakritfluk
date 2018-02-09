@@ -15,17 +15,9 @@ public class ValueComparator implements Comparator<Valuable> {
      */
     public int compare(Valuable a, Valuable b) {
         if (a.getCurrency().toLowerCase().equals(b.getCurrency().toLowerCase())) {
-            if (a.getValue() - b.getValue() == 0)
-                return 0;
-            else if (a.getValue() - b.getValue() > 0)
-                return 1;
-            else return -1;
+            return Double.compare(a.getValue(),b.getValue());
         } else {
-            if (a.getCurrency().compareTo(b.getCurrency())>0){
-                return 1;
-            }else if (a.getCurrency().compareTo(b.getCurrency())<0){
-                return -1;
-            }else return 0;
+           return a.getCurrency().compareTo(b.getCurrency());
         }
     }
 }
