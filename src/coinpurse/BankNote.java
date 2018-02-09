@@ -5,15 +5,8 @@ package coinpurse;
  *
  * @author Thanakrit Daorueang
  */
-public class BankNote implements Valuable {
-    /**
-     * value of banknote.
-     */
-    private double value;
-    /**
-     * currency of banknote.
-     */
-    private String currency;
+public class BankNote extends Money {
+
     /**
      * serialNumber of banknote.
      */
@@ -30,19 +23,10 @@ public class BankNote implements Valuable {
      * @param currency of banknote.
      */
     public BankNote(double value, String currency) {
-        this.value = value;
-        this.currency = currency;
-        this.serialNumber = nextSerialNumber++;
+        super(value, currency);
+        this.serialNumber = nextSerialNumber;
+        nextSerialNumber++;
 
-    }
-
-    /**
-     * This return the value of banknote.
-     *
-     * @return the value of banknote.
-     */
-    public double getValue() {
-        return this.value;
     }
 
     /**
@@ -55,37 +39,13 @@ public class BankNote implements Valuable {
     }
 
     /**
-     * This return the currency of banknote.
-     *
-     * @return the cuurency of banknote.
-     */
-    public String getCurrency() {
-        return this.currency;
-    }
-
-    /**
-     * This use to prove that the object equals or not.
-     *
-     * @param obj is the object to prove with this.
-     * @return the boolean if equals return true and false if not equals.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (this.getClass() != obj.getClass()) return false;
-        BankNote a = (BankNote) obj;
-        return this.value == a.value && this.currency.equals(a.currency);
-    }
-
-    /**
      * This use to print value,currency and serial number in specific form.
      *
      * @return the form of value,currency and serial number.
      */
     @Override
     public String toString() {
-        return String.format("%.0f-%s [%d]", this.value, this.currency, serialNumber);
+        return String.format("%.0f-%s [%d]", this.getValue(), this.getCurrency(), this.getSerial());
     }
 
 }
