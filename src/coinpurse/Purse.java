@@ -104,8 +104,17 @@ public class Purse {
             return true;
         }
     }
-
+    /**
+     * Withdraw the requested amount of money.
+     * Return an array of valuable withdrawn from purse,
+     * or return null if cannot withdraw the amount requested.
+     *
+     * @param amount is the amount to withdraw
+     * @return array of Coin objects for money withdrawn,
+     * or null if cannot withdraw requested amount.
+     */
     public Valuable[] withdraw(Valuable amount) {
+        if (amount.getValue()==0)return null;
         List<Valuable> templist = new ArrayList<>();
         money.sort(comp);
         double amountNeededToWithdraw = amount.getValue();
@@ -136,7 +145,7 @@ public class Purse {
     }
 
     /**
-     * Withdraw the requested amount of money.
+     * Withdraw the requested amount of money with baht currency only.
      * Return an array of valuable withdrawn from purse,
      * or return null if cannot withdraw the amount requested.
      *
