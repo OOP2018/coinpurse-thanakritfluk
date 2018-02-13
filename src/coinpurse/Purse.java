@@ -71,7 +71,7 @@ public class Purse {
     }
 
     /**
-     * Test whether the purse is full.
+     * PurseUtil whether the purse is full.
      * The purse is full if number of items in purse equals
      * or greater than the purse capacity.
      *
@@ -104,6 +104,7 @@ public class Purse {
             return true;
         }
     }
+
     /**
      * Withdraw the requested amount of money.
      * Return an array of valuable withdrawn from purse,
@@ -114,7 +115,7 @@ public class Purse {
      * or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw(Valuable amount) {
-        if (amount.getValue()==0)return null;
+        if (amount.getValue() <= 0 || amount == null) return null;
         List<Valuable> templist = new ArrayList<>();
         money.sort(comp);
         double amountNeededToWithdraw = amount.getValue();
@@ -133,10 +134,6 @@ public class Purse {
         array = templist.toArray(array);
         if (amountNeededToWithdraw > 0) {
             money.addAll(templist);
-            return null;
-        }
-
-        if ( array == null){
             return null;
         }
 
