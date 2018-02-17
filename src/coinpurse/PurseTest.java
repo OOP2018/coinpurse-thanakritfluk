@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test the Purse using JUnit.
+ * PurseUtil the Purse using JUnit.
  * This is a JUnit 4 test suite.
  * <p>
  * IDEs (Eclipse, Netbeans, IntelliJ, BlueJ) include JUnit 4,
@@ -56,7 +56,7 @@ public class PurseTest {
         assertEquals(false, purse.isFull());
         assertEquals(0, purse.count());
     }
-    /** Test insert of the BankNote.
+    /** PurseUtil insert of the BankNote.
      * */
     @Test
     public void testInsertBankNote() {
@@ -81,7 +81,7 @@ public class PurseTest {
     }
 
     /**
-     * Test equals of banknote.
+     * PurseUtil equals of banknote.
      */
     @Test
     public void testEqualsBankNote(){
@@ -104,7 +104,7 @@ public class PurseTest {
     }
 
     /**
-     * Test withdraw in banknote.
+     * PurseUtil withdraw in banknote.
      */
     @Test
     public void testWithdrawBankNote(){
