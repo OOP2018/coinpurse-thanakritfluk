@@ -11,10 +11,7 @@ public class BankNote extends Money {
      * serialNumber of banknote.
      */
     private long serialNumber;
-    /**
-     * next serial number of next banknote.
-     */
-    private static long nextSerialNumber = 1000000;
+
 
     /**
      * This is the construtor of the class that set the value,currency and serial number.
@@ -22,11 +19,9 @@ public class BankNote extends Money {
      * @param value    of banknote.
      * @param currency of banknote.
      */
-    public BankNote(double value, String currency) {
+    public BankNote(double value, String currency,long serialNumber) {
         super(value, currency);
-        this.serialNumber = nextSerialNumber;
-        nextSerialNumber++;
-
+        this.serialNumber = serialNumber;
     }
 
     /**
@@ -37,15 +32,6 @@ public class BankNote extends Money {
     public long getSerial() {
         return this.serialNumber;
     }
-
-    /**
-     * This use to set the serial number to be different for any factory.
-     * @param nextSerialNumber the serial number of banknote.
-     */
-    public static void setNextSerialNumber(long nextSerialNumber) {
-        BankNote.nextSerialNumber = nextSerialNumber;
-    }
-
 
     /**
      * This use to print value,currency and serial number in specific form.

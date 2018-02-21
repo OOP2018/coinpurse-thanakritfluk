@@ -42,7 +42,7 @@ public class PurseTest {
      */
     private Valuable makeMoney(double value) {
         if (value<20) return new Coin(value, CURRENCY);
-        else return new BankNote(value,CURRENCY);
+        else return new BankNote(value,CURRENCY,1000000);
     }
 
 

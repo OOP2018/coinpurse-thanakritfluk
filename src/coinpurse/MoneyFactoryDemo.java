@@ -8,7 +8,9 @@ public class MoneyFactoryDemo {
 
     public static void main(String[] args) {
         System.out.println("Test create Thai money");
-        MoneyFactory.setFactory(new ThaiMoneyFactory());
+        MoneyFactory thaiFactory = new ThaiMoneyFactory();
+        MoneyFactory malayFactory = new MalayMoneyFactory();
+        MoneyFactory.setFactory(thaiFactory);
         MoneyFactory a = MoneyFactory.getInstance();
         Valuable thai1 = a.createMoney(10);
         System.out.println(thai1.toString());
@@ -17,8 +19,9 @@ public class MoneyFactoryDemo {
         Valuable thai3 = a.createMoney(500);
         System.out.println(thai3.toString());
 
+
         System.out.println("\nTest create Malay money");
-        MoneyFactory.setFactory(new MalayMoneyFactory());
+        MoneyFactory.setFactory(malayFactory);
         MoneyFactory b = MoneyFactory.getInstance();
         Valuable malay1 = b.createMoney(0.1);
         System.out.println(malay1.toString());
@@ -26,6 +29,13 @@ public class MoneyFactoryDemo {
         System.out.println(malay2.toString());
         Valuable malay3 = b.createMoney(100);
         System.out.println(malay3.toString());
+
+        System.out.println("\nTest create Thai money again");
+        MoneyFactory.setFactory(thaiFactory);
+        a = MoneyFactory.getInstance();
+        thai1 = a.createMoney(100);
+        System.out.println(thai1.toString());
+
     }
 
 }

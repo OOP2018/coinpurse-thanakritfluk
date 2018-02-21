@@ -6,6 +6,7 @@ package coinpurse;
  */
 public abstract class MoneyFactory {
 
+
     /**
      * This is the instance of money factory.
      */
@@ -23,6 +24,7 @@ public abstract class MoneyFactory {
      * This use to protect money factory.
      */
     protected MoneyFactory() {
+
     }
 
     /**
