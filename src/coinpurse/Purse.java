@@ -1,6 +1,9 @@
 package coinpurse;
 
+import coinpurse.strategy.WithdrawStrategy;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -20,6 +23,8 @@ public class Purse {
      * Collection of objects in the purse.
      */
     private List<Valuable> money;
+
+    private WithdrawStrategy strategy;
 
     /**
      * Capacity is maximum number of items the purse can hold.
@@ -115,30 +120,10 @@ public class Purse {
      * or null if cannot withdraw requested amount.
      */
     public Valuable[] withdraw(Valuable amount) {
-        if (amount.getValue() <= 0 || amount == null) return null;
-        List<Valuable> templist = new ArrayList<>();
-        money.sort(comp);
-        double amountNeededToWithdraw = amount.getValue();
-
-        for (int i = money.size() - 1; i >= 0; i--) {
-            if (amountNeededToWithdraw == 0) break;
-            if (amountNeededToWithdraw > 0 && amount.getCurrency().equals(money.get(i).getCurrency())) {
-                if (amountNeededToWithdraw - money.get(i).getValue() >= 0) {
-                    amountNeededToWithdraw -= money.get(i).getValue();
-                    templist.add(money.get(i));
-                    money.remove(i);
-                }
-            }
-        }
-        Valuable[] array = new Valuable[templist.size()];
-        array = templist.toArray(array);
-        if (amountNeededToWithdraw > 0) {
-            money.addAll(templist);
-            return null;
-        }
-
-        return array;
-
+        Collections.sort(money, comp);
+        List<Valuable> templist = strategy.withdraw(amount, money);
+        if (templist == null) return null;
+        return templist.toArray(new Valuable[templist.size()]);
     }
 
     /**
@@ -163,6 +148,15 @@ public class Purse {
     public String toString() {
         return String.format("Money in the purse: %.2f", getBalance());
 
+    }
+
+    /**
+     * This use to set the strategy of withdraw type.
+     *
+     * @param strategy the type
+     */
+    public void setWithdrawStrategy(WithdrawStrategy strategy) {
+        this.strategy = strategy;
     }
 
 

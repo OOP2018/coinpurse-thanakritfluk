@@ -8,12 +8,6 @@ package coinpurse;
 public class ThaiMoneyFactory extends MoneyFactory {
     private final String TH_CUR = "Baht";
     private static long nextSerial = 1000000;
-//    /**
-//     * This use to set the serial number of Thai factory.
-//     */
-//    public ThaiMoneyFactory() {
-//        BankNote.setNextSerialNumber();
-//    }
 
     /**
      * @param value the value that user input.
